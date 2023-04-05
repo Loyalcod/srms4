@@ -1,17 +1,21 @@
 const express = require("express")
 const app = express()
 require("dotenv").config()
+const credentials = require("./middleWare/credentials")
+const corsOption = require("./config/corsOption")
 const cors = require("cors")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const connectDB = require("./config/db")
 connectDB()
-app.use(cors())
+
 const port = process.env.PORT
 
+app.use(credentials)
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(cookieParser())
+app.use(cors(corsOption))
 
 app.get('/',(req,res)=>{
     res.send("hello this the home page")
@@ -20,6 +24,10 @@ app.get('/',(req,res)=>{
 // adminRouter crude
 const AdminRouter = require("./router/adminRouter")
 app.use('/admin',AdminRouter)
+
+// result router crude
+const resultRouter = require("./router/resultRouter")
+app.use("/result",resultRouter)
 
 // verification Authentication
 const verifyAuthication = require("./middleWare/authHeaders")
@@ -41,9 +49,7 @@ app.use("/subject",SubjectRouter)
 const comboRouter = require("./router/comboRouter")
 app.use('/combo',comboRouter)
 
-// result router crude
-const resultRouter = require("./router/resultRouter")
-app.use("/result",resultRouter)
+
 
 // total count router crude
 const totalCountRouter = require("./router/totalCoutRouter")
