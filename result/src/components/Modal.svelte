@@ -1,10 +1,10 @@
 <script>
-
-export let showModal;
+    import {fade} from 'svelte/transition';
+    export let showModal;
 </script>
 
 {#if showModal}
-<div on:click class="back-drop">
+<div on:click|self transition:fade class="back-drop">
     <div class="mainModal">
         <slot></slot>
     </div>
