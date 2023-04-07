@@ -1,26 +1,34 @@
 <script>
-	import Outer from "./Outer.svelte";
+	import Header from "./components/Header.svelte";
+	import Footer from "./components/Footer.svelte";
+	import Modal from "./components/Modal.svelte";
+	import ModalForm from "./components/ModalForm.svelte";
 
-	let name = "how are you doing you are welcome";
-	let count = 0;
-	const handleCount = ()=>{
-		count += 1
-	}
-	let loggedIn = false;
-	const toggle = ()=>{
-		loggedIn = !loggedIn
-	}
 	
+	let showModal = false;
+
+	let src = "./images/result2.jpeg"
+
+	const toggleModal = ()=>{
+		showModal = !showModal
+	}
 </script>
 
+<Header on:click={toggleModal}/>
 
-<Outer word = {name} />
+<Modal {showModal} on:click = {toggleModal} >
+	<ModalForm/>
+</Modal>
 
-<button on:click= {handleCount} >count {count} </button>
+<img src={src} alt="Result Checker image"/>
 
-{#if loggedIn}
-<button on:click={toggle}>login</button>
-{:else}
-<button on:click={toggle}>logout</button>
-{/if}
+<Footer/>
 
+<style>
+	img{
+		display: block;
+		width: 100%;
+		height: 75vh;
+		object-fit: cover;
+	}
+</style>
