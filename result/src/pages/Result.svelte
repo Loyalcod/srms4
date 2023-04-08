@@ -1,19 +1,29 @@
 <script>
     import Header from "../components/Header.svelte";
     import Footer from "../components/Footer.svelte";
+    import Modal from "../components/Modal.svelte";
+    import ModalForm from "../components/ModalForm.svelte";
+
+    let showModal = false;
+    const toggleModal = ()=>{
+        showModal = !showModal
+    }
 
 </script>
 
-<Header/>
-    <div class="container result-area">
-        <h4>Student Result Details</h4>
+<Header on:click={toggleModal}/>
+<Modal {showModal} on:click={toggleModal} >
+    <ModalForm/>
+</Modal>
+    <div class="container result-area"> 
+        <h4 class="my-2 py-2 text-center">Student Result Details</h4>
         <hr>
 
-        <p><strong>Student Name: </strong> victor</p>
-        <p><strong>Student Reg. No.: </strong> 767887</p>
-        <p><strong>Student class: </strong> Grade 6</p>
+        <p class="my-1"><strong>Student Name: </strong> victor</p>
+        <p class="my-1"><strong>Student Reg. No.: </strong> 767887</p>
+        <p class="my-1"><strong>Student class: </strong> Grade 6</p>
 
-        <table class="table table-bordered table-strip">
+        <table class="table table-bordered table-strip my-4 text-center">
             <thead>
                 <tr>
                     <th>S/N</th>
@@ -46,7 +56,28 @@
                     <td colspan='2'><strong>Percentage:</strong></td>
                     <td><strong>60%</strong></td>
                 </tr>
+
+                <tr colspan="3" class=""><a class="text-decoration-none link-center px-4" href="#" on:click={()=>window.print()}>Print</a></tr>
             </tbody>
         </table>
+
+        <h1 class="h6"><a href="/"  class=" text-decoration-none link-dark">Back Home</a></h1>
     </div>
 <Footer/>
+
+
+<style>
+    .container{
+        width: 100%;
+        height: 90vh;
+        background: white;
+        margin: 5% auto;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    p{
+        padding: 0px;
+        margin: 0px;
+    }
+</style>
