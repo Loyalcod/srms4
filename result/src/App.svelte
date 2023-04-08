@@ -1,34 +1,23 @@
 <script>
-	import Header from "./components/Header.svelte";
-	import Footer from "./components/Footer.svelte";
-	import Modal from "./components/Modal.svelte";
-	import ModalForm from "./components/ModalForm.svelte";
+	import page from "page";
+	import Home from "./pages/Home.svelte";
+	import Result from "./pages/Result.svelte";
 
-	
-	let showModal = false;
+	let current;
+	let urlparam;
 
-	let src = "./images/result2.jpeg"
+	page ('/', ()=> (current = Home))
 
-	const toggleModal = ()=>{
-		showModal = !showModal
-	}
+	page('/result/:email/:regNo', (paramgeter, next)=>{
+		urlparam = paramgeter.params
+		next()
+	},
+	()=>(current = Result)
+	)
+	page.start()
 </script>
 
-<Header on:click={toggleModal}/>
+<main>
+	<svelte:component this={current} urlparam = {urlparam}/>
+</main>
 
-<Modal {showModal} on:click = {toggleModal} >
-	<ModalForm/>
-</Modal>
-
-<img src={src} alt="Result Checker image"/>
-
-<Footer/>
-
-<style>
-	img{
-		display: block;
-		width: 100%;
-		height: 75vh;
-		object-fit: cover;
-	}
-</style>
