@@ -8,7 +8,7 @@
             </a>
             <ul class="nav">
                 <li class="nav-item"><a href="/" class="nav-link link-light px-3">Home</a></li>
-                <li on:click class="nav-item"><a href="#" class="nav-link link-light px-3">Check Result</a></li>
+                <li on:click class="nav-item"><a href="" class="nav-link link-light px-3">Check Result</a></li>
                 <li class="nav-item"><a href="#" class="nav-link link-light px-3">Admin</a></li>
             </ul>
         </div>

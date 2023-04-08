@@ -12,12 +12,26 @@
 	const toggleModal = ()=>{
 		showModal = !showModal
 	}
+
+	const prepareResult =(e)=>{
+		// console.log(e.detail)
+		let email = e.detail.email
+		let regNo = e.detail.regNo
+
+		if(!email){
+			alert("please fill in the missing field")
+		} else if(!regNo){
+			alert("please fill in the missing field")
+		} else{
+			window.location.assign(window.location.href + `result/${email}/${regNo}`)
+		}
+	}
 </script>
 
 <Header on:click={toggleModal}/>
 
 <Modal {showModal} on:click = {toggleModal} >
-	<ModalForm/>
+	<ModalForm on:resultInput={prepareResult}/>
 </Modal>
 
 <img src={src} alt="Result Checker image"/>
