@@ -7,7 +7,7 @@ router.post("/",verifyAuthication, registerResult)
 
 router.get('/',verifyAuthication, getallResult)
 
-router.get('/:email/:regNo',verifyAuthication,checkResult)
+router.get('/:email/:regNo',checkResult)
 
 router.get("/:resultId",verifyAuthication, getOneResult)
 

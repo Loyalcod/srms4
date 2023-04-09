@@ -18,6 +18,6 @@
 </script>
 
 <main>
-	<svelte:component this={current} urlparam = {urlparam}/>
+	<svelte:component this={current} {urlparam}/>
 </main>
 

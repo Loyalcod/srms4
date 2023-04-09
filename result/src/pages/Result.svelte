@@ -1,8 +1,25 @@
 <script>
+    import {onMount} from 'svelte/internal';
     import Header from "../components/Header.svelte";
     import Footer from "../components/Footer.svelte";
     import Modal from "../components/Modal.svelte";
     import ModalForm from "../components/ModalForm.svelte";
+
+    export let urlparam;
+    let email = urlparam.email;
+    let regNo = urlparam.regNo;
+    let result = [];
+
+    onMount(async()=>{
+        try {
+            const response = await fetch(`http://localhost:9000/result/${email}/${regNo}`)
+            const data = response.json()
+            result = data
+            console.log(result)
+        } catch (error) {
+            console.log(error)
+        }
+    })
 
     let showModal = false;
     const toggleModal = ()=>{
@@ -15,6 +32,7 @@
 <Modal {showModal} on:click={toggleModal} >
     <ModalForm/>
 </Modal>
+{#if result !== "student data deos not exist"}
     <div class="container result-area"> 
         <h4 class="my-2 py-2 text-center">Student Result Details</h4>
         <hr>
@@ -23,7 +41,7 @@
         <p class="my-1"><strong>Student Reg. No.: </strong> 767887</p>
         <p class="my-1"><strong>Student class: </strong> Grade 6</p>
 
-        <table class="table table-bordered table-strip my-4 text-center">
+        <table class="table table-bordered table-striped my-4 text-center">
             <thead>
                 <tr>
                     <th>S/N</th>
@@ -63,6 +81,9 @@
 
         <h1 class="h6"><a href="/"  class=" text-decoration-none link-dark">Back Home</a></h1>
     </div>
+    {:else}
+    <h4>no result record</h4>
+    {/if}
 <Footer/>
 
 

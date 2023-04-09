@@ -34,7 +34,7 @@
 	<ModalForm on:resultInput={prepareResult}/>
 </Modal>
 
-<img src={src} alt="Result Checker image"/>
+<img src={src} alt="Result Checker"/>
 
 <Footer/>
 
