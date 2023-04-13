@@ -18,11 +18,9 @@
 		let email = e.detail.email
 		let regNo = e.detail.regNo
 
-		if(!email){
+		if((email === undefined || email == '') || (regNo === undefined || regNo == null)){
 			alert("please fill in the missing field")
-		} else if(!regNo){
-			alert("please fill in the missing field")
-		} else{
+		}else{
 			window.location.assign(window.location.href + `result/${email}/${regNo}`)
 		}
 	}

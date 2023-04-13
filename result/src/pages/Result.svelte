@@ -13,7 +13,7 @@
     onMount(async()=>{
         try {
             const response = await fetch(`http://localhost:9000/result/${email}/${regNo}`)
-            const data = response.json()
+            const data = await response.json()
             result = data
             console.log(result)
         } catch (error) {
@@ -32,11 +32,14 @@
 <Modal {showModal} on:click={toggleModal} >
     <ModalForm/>
 </Modal>
-{#if result !== "student data deos not exist"}
+
+
+
     <div class="container result-area"> 
         <h4 class="my-2 py-2 text-center">Student Result Details</h4>
         <hr>
 
+        {#if result !== "Result not Found"}
         <p class="my-1"><strong>Student Name: </strong> victor</p>
         <p class="my-1"><strong>Student Reg. No.: </strong> 767887</p>
         <p class="my-1"><strong>Student class: </strong> Grade 6</p>
@@ -78,12 +81,13 @@
                 <tr colspan="3" class=""><a class="text-decoration-none link-center px-4" href="#" on:click={()=>window.print()}>Print</a></tr>
             </tbody>
         </table>
+        {:else}
+        <h4 class="text-center lead me-lg-4 my-5">No Result was found here</h4>
+        {/if}
 
         <h1 class="h6"><a href="/"  class=" text-decoration-none link-dark">Back Home</a></h1>
     </div>
-    {:else}
-    <h4>no result record</h4>
-    {/if}
+    
 <Footer/>
 
 

@@ -52,7 +52,7 @@ exports.checkResult = async(req,res)=>{
     try {
 
         const detailsExist = await Student.exists({email, regNO})
-        if(!detailsExist) return res.status(401).json({error: "student data deos not exist"})
+        if(!detailsExist) return res.status(401).json("Result not Found")
 
         const showResult = await Student.find({email, regNO})
         .populate("studentClassId").populate({
