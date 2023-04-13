@@ -11,6 +11,24 @@
   let regNo = urlparam.regNo;
   let result = [];
 
+  let score = 0;
+  let totalScore = 0;
+  let percentage = 0;
+
+  const prepareResult = (e)=>{
+    let email = e.detail.email
+    let regNo = e.detail.regNo
+
+    if((email === undefined || email.length === 0) || (regNo === undefined || regNo.length === 0)){
+        alert("please feel in the missing spaces")
+    }else{
+        let newUrl = new URL(window.location.href + `result/${email}/${regNo}`)
+        let origin = newUrl.origin
+        window.location.assign(origin + `/result/${email}/${regNo}`)
+    }
+  }
+
+
   onMount(async () => {
     try {
       const response = await fetch(
@@ -19,6 +37,14 @@
       const data = await response.json();
       result = data;
       console.log(result);
+      if(result[0].resultId.length !== 0){
+
+        result[0].resultId.forEach(singleResult => {
+            totalScore += 100;
+            score += singleResult.mark;          
+        })
+        percentage = (score/totalScore * 100).toFixed(2)
+      }
     } catch (error) {
       console.log(error);
     }
@@ -32,7 +58,7 @@
 
 <Header on:click={toggleModal} />
 <Modal {showModal} on:click={toggleModal}>
-  <ModalForm />
+  <ModalForm on:resultInput={prepareResult}/>
 </Modal>
 
 <div class="container result-area">
@@ -59,17 +85,17 @@
       </thead> 
 
       <tbody>
-        {#each result[0]?.resultId as singleResult}
-        <SingleResult/>
+        {#each result[0]?.resultId as singleResult, i}
+        <SingleResult {singleResult} {i}/>
         {/each}
 
         <tr>
           <td colspan="2"><strong>Total Score:</strong></td>
-          <td><strong>400</strong> out of <strong>700</strong></td>
+          <td><strong>{score}</strong> out of <strong>{totalScore}</strong></td>
         </tr>
         <tr>
           <td colspan="2"><strong>Percentage:</strong></td>
-          <td><strong>60%</strong></td>
+          <td><strong>{percentage}</strong>%</td>
         </tr>
 
         <tr colspan="3" class=""
