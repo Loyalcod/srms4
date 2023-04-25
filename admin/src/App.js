@@ -1,8 +1,13 @@
+import Header from "./layout/Header"
+import SideBar from "./layout/SideBar"
 
 
 function App() {
   return (
-    <div>App</div>
+    <div>
+      <Header/>
+      <SideBar/>
+    </div>
   )
 }
 

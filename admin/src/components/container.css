@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500&display=swap');
+
+.body-con{
+    padding: 0px;
+    margin: 0px;
+    display: flex;   
+    flex-direction: column;
+}
+
+.con-flex{    
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    
+    /* height: 200px; */
+}
+
+.con-flex>h2{
+    margin: 0px;
+    padding: 0px;
+    padding-top: 25px;
+    height: 50px;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.con-flex>h1{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.comp-area{
+    /* position:initial; */
+    width: 100%;
+    background-color: rgb(229, 228, 228);
+    height: 492px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+   
+}
+
+.cardall{
+    width: 40%;
+    height: 150px;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 30px;
+    margin-left: 50px;
+    background-color: white;
+    box-shadow: 5px 0px 10px lightgray;
+    border-radius: 10px;
+    display: flex;
+    /* flex-wrap: nowrap; */
+    flex-direction: row;
+
+}
+.cardall>div{
+    margin: auto;
+    padding: 0px;
+    flex: 1;
+    margin-left: 20px;
+}
+.cardall>div>p{
+    margin: 0px;
+    padding: 0px;
+}
+
+.cardall>div>h4{
+    margin: 0px;
+    padding: 0px;
+    color: black;
+}
+
