@@ -1,7 +1,11 @@
 function ClassInput({className,gradeName, classCrateEg, gradeEg, classPh, gradePh }) {
+
+  const handleDefault =(e)=>{
+    e.preventDefault()
+  }
   return (
     <>
-      <form>
+      <form onSubmit={handleDefault}>
         <div className="class-form">
           <label>{className}</label>
           <br />

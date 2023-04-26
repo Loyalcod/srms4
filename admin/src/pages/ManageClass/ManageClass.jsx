@@ -1,3 +1,4 @@
+import ClassTable from "../../components/classTable/ClassTable"
 
 
 function ManageClass() {
@@ -9,7 +10,7 @@ function ManageClass() {
         </div>
 
         <div className="class-title color-class">
-            
+            <ClassTable/>
         </div>
 
     </div>

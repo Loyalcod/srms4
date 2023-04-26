@@ -1,4 +1,6 @@
 
+import CreateSubjectForm from "../../components/createSubjectForm/CreateSubjectForm"
+
 function CreateSubject() {
   return (
     <div className="create-class-flex">
@@ -8,7 +10,7 @@ function CreateSubject() {
         </div>
 
         <div className="class-title color-class">
-            
+            <CreateSubjectForm />
         </div>
 
     </div>

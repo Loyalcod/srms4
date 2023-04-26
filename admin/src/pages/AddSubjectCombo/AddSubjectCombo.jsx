@@ -1,3 +1,4 @@
+import ClassInput from "../../components/ClassInput"
 
 
 function AddSubjectCombo() {

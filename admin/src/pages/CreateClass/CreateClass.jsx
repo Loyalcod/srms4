@@ -11,6 +11,8 @@ function CreateClass() {
     const gradePh = "Enter Details"
     // create class ends here
 
+
+
   return (
     <div className="create-class-flex">
 

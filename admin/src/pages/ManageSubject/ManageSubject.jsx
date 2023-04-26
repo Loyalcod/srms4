@@ -1,3 +1,4 @@
+import ManageSubjectTable from "../../components/manageSubjectTable/ManageSubjectTable"
 
 
 function ManageSubject() {
@@ -9,7 +10,7 @@ function ManageSubject() {
         </div>
 
         <div className="class-title color-class">
-            
+            <ManageSubjectTable/>
         </div>
 
     </div>

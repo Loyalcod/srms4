@@ -30,3 +30,43 @@ h4{
     font-weight: 500;
     font-size: 12px;
 }
+.classTable{
+    width: 90%;
+    height: 100%;
+    margin: auto;
+    /* background-color: white; */
+    display: flex;
+    align-items: center;
+
+}
+
+.tableWrapper{
+    width: 100%;
+    height: 90%;
+    background-color: white;
+    
+}
+
+.class_edit_text{
+    background-color: green;
+    color: white;
+    border: 0px;
+    height: 40%;
+    width: 40%;
+    border-radius: 2px;
+    
+}
+.class__delete_icon{
+    color: red;
+}
+
+.createSubBtn{
+    width: 130px;
+    height: 40px;
+    margin-left: 30px;
+    background-color: rgb(75, 72, 72);
+    border: none;
+    margin-bottom: 10px;
+    color: white;
+    outline-style: none;
+}

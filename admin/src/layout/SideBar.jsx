@@ -17,6 +17,10 @@ import { Link } from "react-router-dom";
 // import { useState } from "react";
 
 function SideBar() {
+
+  const logOutme =(e)=>{
+    e.preventDefault()
+  }
  
   
   return (
@@ -150,7 +154,7 @@ function SideBar() {
                 </div>
                 <div>Manage Result</div>
               </Link>
-              <a href="" className="decorate_link">
+              <a href="" onClick={logOutme} className="decorate_link">
                 <div>
                   <ExitToAppIcon fontSize="small" />
                 </div>
