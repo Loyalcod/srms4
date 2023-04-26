@@ -67,11 +67,20 @@
 .cardall>div>p{
     margin: 0px;
     padding: 0px;
+    font-size: 13px;
+    margin-top: 2px;
 }
 
-.cardall>div>h4{
+.cardall>div>h3{
     margin: 0px;
     padding: 0px;
     color: black;
+    margin-top: 3px;
+}
+
+.iconColor{
+    color: lightgray;
+    float: right;
+    margin-right: 10px;
 }
 

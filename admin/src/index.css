@@ -6,12 +6,17 @@ body{
     box-sizing: border-box;
 }
 
-a{
+.decorate_link{
     font-family: 'Poppins', sans-serif;
     text-decoration: none;
     margin: 0px;
     padding: 0px;
 }
+
+a{
+    text-decoration: none;
+}
+
 
 h2{
     font-family: 'Poppins', sans-serif;

@@ -12,23 +12,31 @@ import CreateNewFolderSharpIcon from '@mui/icons-material/CreateNewFolderSharp';
 import SystemSecurityUpdateGoodSharpIcon from '@mui/icons-material/SystemSecurityUpdateGoodSharp';
 import SecurityUpdateWarningSharpIcon from '@mui/icons-material/SecurityUpdateWarningSharp';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import { Link } from "react-router-dom";
+
+// import { useState } from "react";
 
 function SideBar() {
+ 
+  
   return (
-    <div className="main">
+    
+    
+    
       <div class="sidebar">
         <div className="side-divide">
-          <a href="/">
+          <Link  to='/'>
             <h4>Dashboard</h4>
-          </a>
+          </Link>
           <div className="side-item">
             <div>
-              <a href="/">
+              
+              <Link className="decorate_link" to='/'>
                 <div>
                   <RoofingSharpIcon fontSize="small" />
                 </div>
                 <div>Home</div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -42,18 +50,18 @@ function SideBar() {
           </a>
           <div className="side-item">
             <div>
-              <a href="">
+              <Link className="decorate_link" to="createClass">
                 <div>
                   <ClassSharpIcon fontSize="small" />
                 </div>
                 <div>Create Class</div>
-              </a>
-              <a href="">
+              </Link>
+              <Link className="decorate_link" to="manage_class">
                 <div>
                   <SchoolSharpIcon fontSize="small" />
                 </div>
                 <div>Manage Class</div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -66,30 +74,30 @@ function SideBar() {
           </a>
           <div className="side-item">
             <div>
-              <a href="">
+              <Link className="decorate_link" to="Create_Subject">
                 <div>
                   <ModeEditOutlineSharpIcon fontSize="small" />
                 </div>
                 <div>Create Subject</div>
-              </a>
-              <a href="">
+              </Link>
+              <Link className="decorate_link" to="Manage_Subject">
                 <div>
                   <MenuIcon fontSize="small" />
                 </div>
                 <div>Manage Subject</div>
-              </a>
-              <a href="">
+              </Link>
+              <Link className="decorate_link" to="add_subject_combo">
                 <div>
                   <AddSharpIcon fontSize="small" />
                 </div>
                 <div>Add Subject Combo</div>
-              </a>
-              <a href="">
+              </Link>
+              <Link className="decorate_link" to="Manage_Add_SubCombo">
                 <div>
                   <AdjustSharpIcon fontSize="small" />
                 </div>
                 <div>Manage Subject Combo</div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -103,18 +111,18 @@ function SideBar() {
           </a>
           <div className="side-item">
             <div>
-              <a href="">
+              <Link className="decorate_link" to="Create_Student">
                 <div>
                   <AddBoxSharpIcon fontSize="small" />
                 </div>
                 <div>Create Student</div>
-              </a>
-              <a href="">
+              </Link>
+              <Link className="decorate_link" to="Manage_Student">
                 <div>
                   <CreateNewFolderSharpIcon fontSize="small" />
                 </div>
                 <div>Manage Student</div>
-              </a>
+              </Link>
               
             </div>
           </div>
@@ -130,19 +138,19 @@ function SideBar() {
           </a>
           <div className="side-item">
             <div>
-              <a href="">
+              <Link className="decorate_link" to="Create_Result">
                 <div>
                   <SystemSecurityUpdateGoodSharpIcon fontSize="small" />
                 </div>
                 <div>Create Result</div>
-              </a>
-              <a href="">
+              </Link>
+              <Link className="decorate_link" to="Manage_Result">
                 <div>
                   <SecurityUpdateWarningSharpIcon fontSize="small" />
                 </div>
                 <div>Manage Result</div>
-              </a>
-              <a href="">
+              </Link>
+              <a href="" className="decorate_link">
                 <div>
                   <ExitToAppIcon fontSize="small" />
                 </div>
@@ -154,10 +162,9 @@ function SideBar() {
         </div>
       </div>
 
-      <div class="content">
-        <Bodycontainer/>    
-      </div>
-    </div>
+
+    
+    
   );
 }
 

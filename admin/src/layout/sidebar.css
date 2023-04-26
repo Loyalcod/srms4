@@ -34,7 +34,7 @@ body {
 
   }
 
-  .side-divide>a>h4{
+  .decorate_link>h4{
     display: flex;
     flex-wrap: wrap;
     font-size: 11px;
@@ -50,7 +50,7 @@ body {
     margin-top: 10px;
   }
 
-  .side-item>div>a{
+  .decorate_link{
     margin: 0px;
     margin-top: 10px;
     padding: 0px;
@@ -60,7 +60,7 @@ body {
     
   }
 
-  .side-item>div>a{
+  .decorate_link{
     margin: 0px;
     padding: 0px;
     
@@ -73,13 +73,13 @@ body {
     font-family: 'Poppins', sans-serif;  
   }
 
-  .side-item>div>a>div{
+  .decorate_link>div{
     margin-left: 6px; 
     font-family: 'Poppins', sans-serif;  
     /* margin-top: 10px; */
   }
 
-  .side-item>div>a:hover{
+  .decorate_link:hover{
     border-radius: 10px;
     background-color: rgb(34, 33, 33);
   }
