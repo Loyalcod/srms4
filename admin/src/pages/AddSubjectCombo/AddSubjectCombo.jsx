@@ -1,4 +1,4 @@
-import ClassInput from "../../components/ClassInput"
+import CreateStdSubCombo from "../../components/createStdSubCombo/CreateStdSubCombo"
 
 
 function AddSubjectCombo() {
@@ -10,7 +10,7 @@ function AddSubjectCombo() {
         </div>
 
         <div className="class-title color-class">
-            
+            <CreateStdSubCombo/>
         </div>
 
     </div>

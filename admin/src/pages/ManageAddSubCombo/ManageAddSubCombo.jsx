@@ -1,4 +1,4 @@
-
+import MangStdSubComboTable from "../../components/manageStdSubComboTable/MangStdSubComboTable"
 
 function ManageAddSubCombo() {
   return (
@@ -9,6 +9,7 @@ function ManageAddSubCombo() {
         </div>
 
         <div className="class-title color-class">
+          <MangStdSubComboTable/>
             
         </div>
 

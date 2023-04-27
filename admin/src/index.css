@@ -70,3 +70,108 @@ h4{
     color: white;
     outline-style: none;
 }
+
+.comboContainer{
+    width: 100%;
+    height: 100%;
+    /* background-color: blueviolet; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comboholder{
+    font-family: 'Poppins', sans-serif;
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.addStdSubComboForm{
+    width: 80%;
+    height: 50%;
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    /* flex: 2; */
+}
+.addStdSubComboForm>div{
+    font-family: 'Poppins', sans-serif;
+    margin-top: 20px;
+    
+}
+
+.addStdSubComboForm>input{
+    font-family: 'Poppins', sans-serif;
+    width: 15%;
+    background-color: rgb(66, 64, 64);
+    height: 45px;
+    margin-top: 10px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    
+}
+.addStdSubComboForm>div>select{
+    width: 100%;
+    outline: none;
+    height: 40px;
+    
+}
+
+.student_form_box{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(222, 222, 222);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.student_form{
+    width: 70%;
+    height: 100%;
+    background-color: white;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.student_form>div{
+    width: 80%;
+    flex: 2;   
+}
+
+
+
+.student_form>input{
+    font-family: 'Poppins', sans-serif;
+    width: 15%;
+    height: 35px;
+    background-color: rgb(66, 64, 64);
+    border: none;
+    margin-bottom: 20px;
+    color: white;
+        
+}
+
+.student_form>div>label{
+    color: rgb(58, 58, 58);
+    font-size: 14px;
+}
+.student_form>div>input{
+    width: 100%;
+    height: 35px;
+    outline: none;
+    margin-top: 2px;
+}
+.student_form>div>select{
+    width: 100%;
+    height: 35px;
+    outline: none;
+    margin-top: 2px;
+}
+

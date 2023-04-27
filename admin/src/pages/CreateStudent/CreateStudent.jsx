@@ -1,3 +1,4 @@
+import CreateStudentForm from "../../components/createStudentForm/CreateStudentForm"
 
 
 function CreateStudent() {
@@ -9,7 +10,7 @@ function CreateStudent() {
         </div>
 
         <div className="class-title color-class">
-            
+           <CreateStudentForm/>
         </div>
 
     </div>
