@@ -1,0 +1,78 @@
+.loginPage{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color:rgb(199, 199, 199);
+}
+
+
+.login_page_contain_1{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    /* background-color: blue; */
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login_page_contain{
+    margin:0px;
+    padding: 0px;
+    height: 604px;
+    /* background-color: greenyellow; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginform{
+    width: 40%;
+    height: 40%;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginformstyle{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    /* background-color: blue; */
+    height: 90%;
+}
+.loginformstyle>div{
+    flex: 1px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.logsubmit{
+    width: 20%;
+    height: 35px;
+    background-color: rgb(63, 63, 63);
+    border: none;
+    margin-bottom: 10px;
+    color: white;
+
+}
+.loginformstyle>div>div{
+    display: flex;
+    margin-top: 10px;
+    flex-direction: column;
+}
+
+.loginformstyle>div>div>input{
+    height: 30px;
+    outline: none;
+}
+
+ 

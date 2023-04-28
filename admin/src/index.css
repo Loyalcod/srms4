@@ -4,6 +4,7 @@ body{
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 .decorate_link{
@@ -105,10 +106,26 @@ h4{
 
 .addStdSubComboForm>input{
     font-family: 'Poppins', sans-serif;
-    width: 15%;
+    width: 20%;
     background-color: rgb(66, 64, 64);
-    height: 45px;
-    margin-top: 10px;
+    height: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 20px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    
+}
+
+.addStdSubComboForm>button{
+    font-family: 'Poppins', sans-serif;
+    width: 20%;
+    background-color: rgb(66, 64, 64);
+    height: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 20px;
     border: none;
     color: white;
     border-radius: 5px;
@@ -118,6 +135,13 @@ h4{
     width: 100%;
     outline: none;
     height: 40px;
+    
+}
+
+.addStdSubComboForm>div>input{
+    width: 100%;
+    outline: none;
+    height: 35px;
     
 }
 
@@ -150,7 +174,7 @@ h4{
 .student_form>input{
     font-family: 'Poppins', sans-serif;
     width: 15%;
-    height: 35px;
+    height: 40px;
     background-color: rgb(66, 64, 64);
     border: none;
     margin-bottom: 20px;
@@ -174,4 +198,6 @@ h4{
     outline: none;
     margin-top: 2px;
 }
+
+
 

@@ -1,3 +1,4 @@
+import CreateResultForm from "../../components/createResultForm/CreateResultForm"
 
 
 function CreateResult() {
@@ -9,7 +10,7 @@ function CreateResult() {
         </div>
 
         <div className="class-title color-class">
-            
+            <CreateResultForm />
         </div>
 
     </div>

@@ -1,4 +1,4 @@
-
+import ManageStudentForm from "../../components/manageStudent/ManageStudentForm"
 
 function ManageStudent() {
   return (
@@ -9,7 +9,7 @@ function ManageStudent() {
         </div>
 
         <div className="class-title color-class">
-            
+            <ManageStudentForm />
         </div>
 
     </div>

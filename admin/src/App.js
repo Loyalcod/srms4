@@ -1,4 +1,4 @@
-
+import DeloginPage from "./pages/deLoginPage/DeloginPage";
 import Bodycontainer from "./components/Bodycontainer";
 import ManageClass from "./pages/ManageClass/ManageClass";
 import Home from "./pages/Home/Home"
@@ -11,14 +11,15 @@ import ManageAddSubCombo from "./pages/ManageAddSubCombo/ManageAddSubCombo";
 import ManageResult from "./pages/ManageResult/ManageResult";
 import ManageStudent from "./pages/ManageStudent/ManageStudent";
 import ManageSubject from "./pages/ManageSubject/ManageSubject";
+
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />}>
-          <Route path="/" element={<Bodycontainer />}></Route>
-          <Route path="/" element={<Home />}></Route>
+      <Route path="/" element={<DeloginPage/>}></Route>
+      <Route path="admin" element={<Home />}>
+          <Route path="/admin" element={<Bodycontainer/>}></Route>
           <Route path="createClass" element={<CreateClass/>}></Route>
           <Route path="manage_class" element={<ManageClass/>}></Route>
           <Route path="add_subject_combo" element={<AddSubjectCombo/>}></Route>

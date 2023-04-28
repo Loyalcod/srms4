@@ -29,13 +29,13 @@ function SideBar() {
     
       <div class="sidebar">
         <div className="side-divide">
-          <Link  to='/'>
+          <Link  to='admin'>
             <h4>Dashboard</h4>
           </Link>
           <div className="side-item">
             <div>
               
-              <Link className="decorate_link" to='/'>
+              <Link className="decorate_link" to='/admin'>
                 <div>
                   <RoofingSharpIcon fontSize="small" />
                 </div>

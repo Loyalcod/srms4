@@ -29,8 +29,8 @@ function ManageSubjectTable() {
       renderCell: () => {
         return (
           <>
-            <button className="class_edit_text">Edit</button>
-            <HighlightOffIcon className="class__delete_icon" />
+            <button className="class_edit_text" style={{cursor:"pointer"}}>Edit</button>
+            <HighlightOffIcon className="class__delete_icon" style={{cursor:"pointer"}} />
           </>
         );
       },

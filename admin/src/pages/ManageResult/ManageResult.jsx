@@ -1,3 +1,5 @@
+import ManageResultForm from "../../components/manageResult/ManageResultForm"
+
 
 function ManageResult() {
   return (
@@ -8,7 +10,7 @@ function ManageResult() {
         </div>
 
         <div className="class-title color-class">
-            
+            <ManageResultForm />
         </div>
 
     </div>
