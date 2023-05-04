@@ -2,14 +2,14 @@ const allowedOrigin = require("./allowedOrigin")
 
 const corsOption = {
     origin: (origin,callback)=>{
-        if(allowedOrigin.indexOf(origin) !== 1 || !origin){
+        if(allowedOrigin.indexOf(origin) !== -1 || !origin){
             callback(null,true)
 
         }else{
-            callback(new Error("origin is invalid"))
+            callback(new Error("not allowed by cors"))
         }
     },
     optionSuccessStatus: 200
 }
 
-module.exports = corsOption
+module.exports = corsOption 

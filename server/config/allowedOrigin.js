@@ -1,9 +1,7 @@
 
-
-
 const allowedOrigin = [
-    'hhttp://localhost:2000',
-    'hhttp://localhost:9000',
+    'http://localhost:2000',
+    'http://localhost:9000',
 ]
 
 module.exports = allowedOrigin

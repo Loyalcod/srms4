@@ -1,4 +1,6 @@
 import DeloginPage from "./pages/deLoginPage/DeloginPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import RegisterPage from "./pages/ResgisterPage/RegisterPage";
 import Bodycontainer from "./components/Bodycontainer";
 import ManageClass from "./pages/ManageClass/ManageClass";
 import Home from "./pages/Home/Home"
@@ -13,11 +15,15 @@ import ManageStudent from "./pages/ManageStudent/ManageStudent";
 import ManageSubject from "./pages/ManageSubject/ManageSubject";
 
 import { Routes, Route } from 'react-router-dom';
+import RequireAuth from "./components/requireAuth/RequireAuth";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<DeloginPage/>}></Route>
+      <Route path="/login" element={<DeloginPage/>}></Route>
+      <Route path="register" element={<RegisterPage/>}></Route>
+      <Route element={<RequireAuth/>} >
       <Route path="admin" element={<Home />}>
           <Route path="/admin" element={<Bodycontainer/>}></Route>
           <Route path="createClass" element={<CreateClass/>}></Route>
@@ -31,6 +37,8 @@ function App() {
           <Route path="Manage_Student" element={<ManageStudent/>}></Route>
           <Route path="Manage_Subject" element={<ManageSubject/>}></Route>
       </Route>
+      </Route>
+      <Route path="*" element={<NotFoundPage/>}></Route>
     </Routes>
     
 

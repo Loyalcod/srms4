@@ -31,7 +31,7 @@ exports.loginAdmin = async(req,res)=>{
         const userExist = await Admin.findOne({username})
         if(userExist){
             const validatePass = await bcrypt.compare(password,userExist.password)
-            if(!validatePass) return res.status(401).json({error:"incorrect password"})
+            if(!validatePass) return res.status(400).json({error:"incorrect password"})
 
             const accessToken = jwt.sign({_id: userExist._id, username: userExist.username},process.env.ACCESS_JWT_SECRET,{expiresIn: "10m"})
             const refreshToken = jwt.sign({_id: userExist._id, username: userExist.username},process.env.REFRESH_JWT_SECRET,{expiresIn: "24h"})
@@ -41,11 +41,13 @@ exports.loginAdmin = async(req,res)=>{
                 {$set: {refreshToken}}
             )
 
-            const refreshCookie = res.cookie("jwt",refreshToken,{httpOnly: true, sameSite: "none", maxAge: 24*60*60*1000})
+            const refreshCookie = res.cookie("jwt",refreshToken,{httpOnly: true, sameSite: "none", secure:true, maxAge: 24*60*60*1000})
             console.log(refreshCookie)
 
             res.json({accessToken,refreshToken})
 
+        }else{
+            res.status(404).json({error:"username not found"})
         }
     } catch (error) {
         res.json({error:error.message})
@@ -88,7 +90,7 @@ exports.logOutAdmin = async(req,res)=>{
             {refreshToken:refreshCookie},
             {$set: {refreshToken:null}}
         )
-        res.clearCookie('jwt',{httpOnly: true, sameSite: "none"})
+        res.clearCookie('jwt',{httpOnly: true,secure:true, sameSite: "none"})
         res.sendStatus(204)
         
     } catch (error) {

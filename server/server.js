@@ -12,10 +12,11 @@ connectDB()
 const port = process.env.PORT
 
 app.use(credentials)
+app.use(cors(corsOption))
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(cookieParser())
-app.use(cors(corsOption))
+
 
 app.get('/',(req,res)=>{
     res.send("hello this the home page")
