@@ -6,25 +6,33 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import { useState } from "react";
 
 
+
+
+
 function Bodycontainer() {
+
 
   const [icons, setIcons] = useState([
     {
+      id:1,
       name: "Registered Student",
       num: "70",
       iconName: PeopleAltIcon,
     },
     {
+      id:2,
       name: "Total Class",
       num: "12",
       iconName: BookIcon,
     },
     {
+      id:3,
       name: "Total Subject",
       num: "14",
       iconName: CollectionsBookmarkIcon,
     },
     {
+      id:4,
       name: "Decleared Result",
       num: "67",
       iconName: MenuBookIcon,
@@ -38,7 +46,8 @@ function Bodycontainer() {
       <div className="body-con">
         <div className="con-flex">
           <h2>Dashboard</h2>
-        </div>
+
+        </div>         
         <div className="con-flex comp-area">
           
           {icons.map((items)=> (

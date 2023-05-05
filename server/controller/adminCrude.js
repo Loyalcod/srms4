@@ -65,7 +65,7 @@ exports.refreshLoginAdmin = async(req,res)=>{
 
         let adminDetial = ""
         jwt.verify(refreshToken, process.env.REFRESH_JWT_SECRET,(err,payload)=>{
-            if(err) return res.status(401).json({error:"incorrect refreshtoken"})
+            if(err) return res.status(403).json({error:"incorrect refreshtoken"})
             adminDetial = payload
         })
 

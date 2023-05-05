@@ -3,12 +3,14 @@ import SideBar from "../../layout/SideBar"
 import { Outlet } from "react-router-dom"
 
 function Home() {
+
   return (
     <>
         <Header />
         <div className="main">
             <SideBar />
-            <div class="content"> 
+            <div className="content"> 
+            
                 <Outlet />   
             </div>
         </div>
