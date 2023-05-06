@@ -1,9 +1,11 @@
 import "./container.css";
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import BookIcon from '@mui/icons-material/Book';
+import { useEffect, useState } from "react";
+import UseAxiosPrivate from "./hooks/UseAxiosPrivate";
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
-import { useState } from "react";
+
 
 
 
@@ -11,33 +13,50 @@ import { useState } from "react";
 
 function Bodycontainer() {
 
+  const privateAxios = UseAxiosPrivate()
+  const [totals, setTotals] = useState({})
 
-  const [icons, setIcons] = useState([
+  useEffect(()=>{
+    const getTotals = async()=>{
+      try {
+        const response = await privateAxios.get("/total")
+        console.log(response.data)
+        setTotals(response.data)
+      } catch (error) {
+        console.log(error)        
+      }
+    }
+    getTotals()
+  },[])
+
+
+  const icons=[
     {
       id:1,
       name: "Registered Student",
-      num: "70",
+      num: `${totals?.studentCount}`,
       iconName: PeopleAltIcon,
     },
     {
       id:2,
       name: "Total Class",
-      num: "12",
+      num: `${totals?.studentClasscount}`,
       iconName: BookIcon,
     },
     {
       id:3,
       name: "Total Subject",
-      num: "14",
+      num: `${totals?.subjectCount}`,
       iconName: CollectionsBookmarkIcon,
     },
     {
       id:4,
       name: "Decleared Result",
-      num: "67",
+      num: `${totals?.resultCount}`,
       iconName: MenuBookIcon,
     },
-  ])
+  ]
+  
   
 
   return (

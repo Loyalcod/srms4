@@ -50,8 +50,6 @@ app.use("/subject",SubjectRouter)
 const comboRouter = require("./router/comboRouter")
 app.use('/combo',comboRouter)
 
-
-
 // total count router crude
 const totalCountRouter = require("./router/totalCoutRouter")
 app.use("/total", totalCountRouter)
