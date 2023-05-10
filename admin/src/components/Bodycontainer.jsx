@@ -17,16 +17,26 @@ function Bodycontainer() {
   const [totals, setTotals] = useState({})
 
   useEffect(()=>{
+    const controller = new AbortController()
+    let isMounted = true
     const getTotals = async()=>{
       try {
-        const response = await privateAxios.get("/total")
+        const response = await privateAxios.get("/total",{ signal: controller.signal })
         console.log(response.data)
-        setTotals(response.data)
+        if(isMounted) return setTotals(response.data)
       } catch (error) {
-        console.log(error)        
+        if(error.name === 'AbortError') {
+          console.log(error)
+        }
+        console.log(error)
+                
       }
     }
     getTotals()
+    return () => {
+      isMounted = false
+      controller.abort(); 
+    }    
   },[])
 
 

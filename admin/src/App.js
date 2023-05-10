@@ -1,4 +1,5 @@
 import DeloginPage from "./pages/deLoginPage/DeloginPage";
+import PersistenLogin from "./components/persistLogin/PersistantLogin";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import RegisterPage from "./pages/ResgisterPage/RegisterPage";
 import Bodycontainer from "./components/Bodycontainer";
@@ -13,7 +14,6 @@ import ManageAddSubCombo from "./pages/ManageAddSubCombo/ManageAddSubCombo";
 import ManageResult from "./pages/ManageResult/ManageResult";
 import ManageStudent from "./pages/ManageStudent/ManageStudent";
 import ManageSubject from "./pages/ManageSubject/ManageSubject";
-
 import { Routes, Route } from 'react-router-dom';
 import RequireAuth from "./components/requireAuth/RequireAuth";
 
@@ -23,6 +23,7 @@ function App() {
       <Route path="/" element={<DeloginPage/>}></Route>
       <Route path="/login" element={<DeloginPage/>}></Route>
       <Route path="register" element={<RegisterPage/>}></Route>
+      <Route element={<PersistenLogin />}>
       <Route element={<RequireAuth/>} >
       <Route path="admin" element={<Home />}>
           <Route path="/admin" element={<Bodycontainer/>}></Route>
@@ -36,6 +37,7 @@ function App() {
           <Route path="Manage_Result" element={<ManageResult/>}></Route>
           <Route path="Manage_Student" element={<ManageStudent/>}></Route>
           <Route path="Manage_Subject" element={<ManageSubject/>}></Route>
+      </Route>
       </Route>
       </Route>
       <Route path="*" element={<NotFoundPage/>}></Route>

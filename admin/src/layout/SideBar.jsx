@@ -11,15 +11,25 @@ import CreateNewFolderSharpIcon from '@mui/icons-material/CreateNewFolderSharp';
 import SystemSecurityUpdateGoodSharpIcon from '@mui/icons-material/SystemSecurityUpdateGoodSharp';
 import SecurityUpdateWarningSharpIcon from '@mui/icons-material/SecurityUpdateWarningSharp';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
+import useLogOut from '../components/hooks/LogOut';
+
 
 // import { useState } from "react";
 
 function SideBar() {
 
-  const logOutme =(e)=>{
-    e.preventDefault()
-  }
+  const logout = useLogOut()
+    const navigate = useNavigate()
+
+    const handleLogOutClick = async()=>{
+    
+        await logout()
+        navigate('/')
+    }
+    
+
+
  
   
   return (
@@ -153,7 +163,7 @@ function SideBar() {
                 </div>
                 <div>Manage Result</div>
               </Link>
-              <a href="" onClick={logOutme} className="decorate_link">
+              <a href="" onClick={handleLogOutClick} className="decorate_link">
                 <div>
                   <ExitToAppIcon fontSize="small" />
                 </div>

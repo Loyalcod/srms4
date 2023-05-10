@@ -3,8 +3,19 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 import SettingsIcon from '@mui/icons-material/Settings';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import useLogOut from '../components/hooks/LogOut';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
+
+    const logout = useLogOut()
+    const navigate = useNavigate()
+
+    const handleLogOutClick = async()=>{
+        await logout()
+        navigate('/')
+    }
+    
   return (
     <div>
         <div className="container">
@@ -32,7 +43,7 @@ function Header() {
                                 <AccountCircleIcon/>
                             </a> 
                     </div>
-                    <div className="flexIcons ">
+                    <div className="flexIcons " onClick={handleLogOutClick}>
                             <a href="" className='flexIcon'>
                                 <ExitToAppIcon/>
                                 Logout
