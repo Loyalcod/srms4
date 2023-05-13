@@ -1,39 +1,95 @@
 import { DataGrid } from '@mui/x-data-grid';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import UseAxiosPrivate from "../hooks/UseAxiosPrivate";
 
 
-const rows = [
-    { id: 1, col1: 'Hello', col2: 'World', col3: "Grade 1", col4: '4-10-2022' },
-    { id: 2, col1: 'DataGridPro', col2: 'is Awesome', col3: "Grade 2", col4: '4-10-2022' },
-    { id: 3, col1: 'MUI', col2: 'is Amazing', col3: "Grade 4", col4: '4-10-2022' },
-    
+
+
+
+function ClassTable() {
+
+  const columns = [
+    { field: "_id", headerName: "ID", hide:true},
+    { field: "className", headerName: "Class Name", width: 150 },
+    { field: "grade", headerName: "Section", width: 150 },
+    { field:"createdAt", headerName: "Creation Date", width: 150 },
+    {
+      field: "action",
+      headerName: "Action",
+      width: 150,
+      renderCell: (params) => {
+        return (
+          <>
+            {/* {console.log(params)} */}
+            <Link className="class_edit_text" to={`/admin/manage_class/${params.row._id}`}>
+            <button className="class_edit_text">Edit</button>
+            </Link>
+            <DeleteForeverIcon className="class__delete_icon" onClick={()=>handleDelete(params.row._id)}/>
+          </>
+        );
+      },
+    },
   ];
   
-  const columns = [
-    { field: 'col1', headerName: 'Student Name', width: 150 },
-    { field: 'col2', headerName: 'Registration Number', width: 150 },
-    { field: 'col3', headerName: 'Class', width: 150 },
-    { field: 'col4', headerName: 'Registration Date', width: 150 },
-    { field: 'col5', headerName: 'Action', width: 150,
-        renderCell: ()=>{
-            return (
-                <>
-                <button className='class_edit_text'>Edit</button>
-                <DeleteForeverIcon className='class__delete_icon'/>
-                </>
-            )
-        }
-        },
-  ];
+  const [dataArray, setDataArray] = useState([])
+  const axiosApi = UseAxiosPrivate()
+  const [del, setDel] = useState(false)
 
-function ClassTable() {      
+  useEffect(()=>{
+    const controller = new AbortController()
+      let isMounted = true
+    const getClassData = async()=>{
+      try {
+        const response = await axiosApi.get('/classes',{
+          signal: controller.signal
+        })
+        isMounted && setDataArray(response.data)
+        console.log(response.data)
+
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getClassData()
+    return ()=>{
+      isMounted = false
+      controller.abort()
+    }
+  },[del])
+
+  const handleDelete = async(id)=>{
+    let text = "Are you sure you want to Delete"
+    if(window.confirm(text)=== true){
+      setDel(true)
+      try {
+        const response = await axiosApi.delete(`/classes/${id}`)
+        console.log(response.data)
+      } catch (error) {
+        console.log(error)
+      }
+      setDel(false)
+    }
+  }
+
+ 
+  
   return (
     <div className="classTable">
-        <div className="tableWrapper">
-            <DataGrid rows={rows} columns={columns} disableSelectionOnClick checkboxSelection pageSize={5} rowsPerPageOptions={[5]} />
-        </div>
+      <div className="tableWrapper">
+        <DataGrid
+          rows={dataArray}
+          columns={columns}
+          disableRowSelectionOnClick
+          getRowId={(dataArray)=> dataArray._id}
+          checkboxSelection
+          pageSize={5}
+          rowsPerPageOptions={[5]}
+        />
+      </div>
     </div>
-  )
+  );
 }
 
-export default ClassTable
+export default ClassTable;

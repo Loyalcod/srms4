@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 export default function useRefreshToken (){
     const {setAuth} = UseAuth()
     const navigate = useNavigate()
+    
 
     const refresh = async()=>{
         try {
@@ -13,12 +14,13 @@ export default function useRefreshToken (){
             })
             if(response.status === 200){
                 setAuth(prev =>{
-                    console.log("previous accesstoken: " + prev.accessToken)
-                    console.log("new access token: " + response?.data?.newAccesstoken)
+                    // console.log("previous accesstoken: " + prev.accessToken)
+                    // console.log("new access token: " + response?.data?.newAccesstoken)
                     return{...prev, accessToken: response?.data?.newAccesstoken}
                 })
                 return response?.data?.newAccesstoken
             }
+            
         } catch (error) {
             console.log(error)
             if(error?.response?.status === 403){

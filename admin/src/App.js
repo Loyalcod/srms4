@@ -1,4 +1,5 @@
 import DeloginPage from "./pages/deLoginPage/DeloginPage";
+import EditeClass from "./pages/editeClassPage/EditeClass";
 import PersistenLogin from "./components/persistLogin/PersistantLogin";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import RegisterPage from "./pages/ResgisterPage/RegisterPage";
@@ -37,6 +38,10 @@ function App() {
           <Route path="Manage_Result" element={<ManageResult/>}></Route>
           <Route path="Manage_Student" element={<ManageStudent/>}></Route>
           <Route path="Manage_Subject" element={<ManageSubject/>}></Route>
+
+          {/* this is the editing pages */}
+
+          <Route path="manage_class/:classId" element={<EditeClass/>}></Route>
       </Route>
       </Route>
       </Route>

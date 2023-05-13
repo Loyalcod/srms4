@@ -36,7 +36,7 @@ function SideBar() {
     
     
     
-      <div class="sidebar">
+      <div className="sidebar">
         <div className="side-divide">
           <Link  to='admin'>
             <h4>Dashboard</h4>

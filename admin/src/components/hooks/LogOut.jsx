@@ -1,10 +1,14 @@
 import UseAuth from "./UseAuth";
 import UseAxiosPrivate from "./UseAxiosPrivate";
+import useRefreshToken from "./useRefreshToken";
+import { Navigate, useLocation } from "react-router-dom";
 
 
 const useLogOut = ()=>{
-    const {setAuth} = UseAuth()
+    const {auth, setAuth} = UseAuth()
+    const refresh = useRefreshToken()
     const secureAxios = UseAxiosPrivate()
+    const location = useLocation()
 
     const logout = async()=>{
         try {
@@ -14,6 +18,7 @@ const useLogOut = ()=>{
             console.log(error)
         }
         setAuth({})
+        
     }
     return logout
 }

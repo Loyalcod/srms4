@@ -8,7 +8,7 @@ exports.ClassesCreate = async(req,res)=>{
 
     try {
         const classExist = await StudentClass.exists({className, grade})
-        if(classExist) return res.status(401).json({error:"class already exist"})
+        if(classExist) return res.status(409).json({error:"class already exist"})
         const createClass = await StudentClass.create({
             className,
             grade
