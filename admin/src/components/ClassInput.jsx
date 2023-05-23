@@ -1,6 +1,7 @@
 import UseAxiosPrivate from "./hooks/UseAxiosPrivate";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { UseAxiosPostPatch } from "./hooks/UseAxiosMethod";
 
 function ClassInput({className,gradeName, classCrateEg, gradeEg, classPh, gradePh, btnName, classId}) {
 
@@ -8,6 +9,7 @@ function ClassInput({className,gradeName, classCrateEg, gradeEg, classPh, gradeP
   const [classname, setClassname] = useState("")
   const [section, setSection] = useState("")
   const [id, setId] = useState("")
+  const axiosPostPatch = UseAxiosPostPatch()
 
   useEffect(()=>{
 
@@ -44,42 +46,45 @@ function ClassInput({className,gradeName, classCrateEg, gradeEg, classPh, gradeP
     const reqData = {className:classname, grade:section}
 
     if(btnName === 'Create'){
-
-      try {
-        const response = await SecureApi.post("/classes", reqData)
-        console.log(response)
-        if(response.status === 200){
-          toast("Creating was successful")
-        }
+      axiosPostPatch('/classes',SecureApi.post,"Creating was Successful",reqData)
         setClassname('')
-        setSection("")
+        setSection(" ")
+      // try {
+      //   const response = await SecureApi.post("/classes", reqData)
+      //   console.log(response)
+      //   if(response.status === 200){
+      //     toast("Creating was successful")
+      //   }
+      //   setClassname(' ')
+      //   setSection(" ")
         
-      } catch (error) {
-        if(!error.response){
-          toast("no response from server")
-        }else if(error?.request?.status === 409){
-          toast("this class already exist")
-        }else{
-          toast("Failed to Create")
-        }
-      }
+      // } catch (error) {
+      //   if(!error.response){
+      //     toast("no response from server")
+      //   }else if(error?.request?.status === 409){
+      //     toast("this class already exist")
+      //   }else{
+      //     toast("Failed to Create")
+      //   }
+      // }
     }else{
-      try {
-        const response = await SecureApi.patch(`/classes/${id}`, reqData)
-        console.log(response.data)
-        if(response.status === 200){
-          toast("Updating was successful")
-        }
+      axiosPostPatch(`/classes/${id}`, SecureApi.patch, "Updating was successfull", reqData)
+      // try {
+      //   const response = await SecureApi.patch(`/classes/${id}`, reqData)
+      //   console.log(response.data)
+      //   if(response.status === 200){
+      //     toast("Updating was successful")
+      //   }
         
-      } catch (error) {
-        if(!error.response){
-          toast("no response from server")
-        }else if(error?.request?.status === 409){
-          toast("this class already exist")
-        }else{
-          toast("Failed to Create")
-        }
-      }
+      // } catch (error) {
+      //   if(!error.response){
+      //     toast("no response from server")
+      //   }else if(error?.request?.status === 409){
+      //     toast("this class already exist")
+      //   }else{
+      //     toast("Failed to Create")
+      //   }
+      // }
     }
    
   }
