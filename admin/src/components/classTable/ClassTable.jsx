@@ -3,6 +3,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import UseAxiosPrivate from "../hooks/UseAxiosPrivate";
+import { UseAxiosGetAll } from '../hooks/UseAxiosMethod';
 
 
 
@@ -36,21 +37,23 @@ function ClassTable() {
   const [dataArray, setDataArray] = useState([])
   const axiosApi = UseAxiosPrivate()
   const [del, setDel] = useState(false)
+  const GetAxiosHook = UseAxiosGetAll()
 
   useEffect(()=>{
     const controller = new AbortController()
       let isMounted = true
     const getClassData = async()=>{
-      try {
-        const response = await axiosApi.get('/classes',{
-          signal: controller.signal
-        })
-        isMounted && setDataArray(response.data)
-        console.log(response.data)
+      GetAxiosHook('/classes',axiosApi.get,controller,isMounted,setDataArray) 
+      // try {
+      //   const response = await axiosApi.get('/classes',{
+      //     signal: controller.signal
+      //   })
+      //   isMounted && setDataArray(response.data)
+      //   console.log(response.data)
 
-      } catch (error) {
-        console.log(error)
-      }
+      // } catch (error) {
+      //   console.log(error)
+      // }
     }
     getClassData()
     return ()=>{

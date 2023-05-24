@@ -23,3 +23,20 @@ export const UseAxiosPostPatch = ()=>{
     }
     return postPatchAxios
 }
+
+export const UseAxiosGetAll = ()=>{
+    const getAllAxios = async(url, func_type, cntrl,isMnted, func_set)=>{
+        try {
+            const response = await func_type(url,{ signal: cntrl.signal })
+            // console.log(response.data)
+            if(isMnted) return func_set(response.data)
+          } catch (error) {
+            if(error.name === 'AbortError') {
+              console.log(error)
+            }
+            console.log(error)
+                    
+          }
+    }
+    return getAllAxios
+}

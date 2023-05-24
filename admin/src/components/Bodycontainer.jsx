@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import UseAxiosPrivate from "./hooks/UseAxiosPrivate";
 import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
+import { UseAxiosGetAll } from "./hooks/UseAxiosMethod";
 
 
 
@@ -15,22 +16,24 @@ function Bodycontainer() {
 
   const privateAxios = UseAxiosPrivate()
   const [totals, setTotals] = useState({})
+  const GetAxiosHook = UseAxiosGetAll()
 
   useEffect(()=>{
     const controller = new AbortController()
     let isMounted = true
     const getTotals = async()=>{
-      try {
-        const response = await privateAxios.get("/total",{ signal: controller.signal })
-        console.log(response.data)
-        if(isMounted) return setTotals(response.data)
-      } catch (error) {
-        if(error.name === 'AbortError') {
-          console.log(error)
-        }
-        console.log(error)
+      GetAxiosHook("/total",privateAxios.get,controller,isMounted,setTotals)
+      // try {
+      //   const response = await privateAxios.get("/total",{ signal: controller.signal })
+      //   console.log(response.data)
+      //   if(isMounted) return setTotals(response.data)
+      // } catch (error) {
+      //   if(error.name === 'AbortError') {
+      //     console.log(error)
+      //   }
+      //   console.log(error)
                 
-      }
+      // }
     }
     getTotals()
     return () => {
