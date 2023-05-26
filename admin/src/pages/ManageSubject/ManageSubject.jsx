@@ -1,4 +1,5 @@
 import ManageSubjectTable from "../../components/manageSubjectTable/ManageSubjectTable"
+import { ToastContainer } from "react-toastify"
 
 
 function ManageSubject() {
@@ -6,6 +7,7 @@ function ManageSubject() {
     <div className="create-class-flex">
 
         <div className="class-title">
+          <ToastContainer/>
             <h3>Manage Subject</h3>
         </div>
 
