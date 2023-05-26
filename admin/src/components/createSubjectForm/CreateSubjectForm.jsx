@@ -1,6 +1,6 @@
 
 
-function CreateSubjectForm() {
+function CreateSubjectForm({btnText}) {
     const handleDefault =(e)=>{
         e.preventDefault()
     }
@@ -20,7 +20,7 @@ function CreateSubjectForm() {
           <p>eg.Mth 112,GSS 112</p>  
         </div>
 
-        <button className="createSubBtn">Create Subject</button>
+        <button className="createSubBtn">{btnText}</button>
       </form>
     </>
   )

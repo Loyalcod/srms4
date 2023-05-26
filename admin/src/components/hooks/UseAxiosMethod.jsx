@@ -40,3 +40,23 @@ export const UseAxiosGetAll = ()=>{
     }
     return getAllAxios
 }
+
+
+export const UseAxiosDelete = ()=>{
+  const DeleteAllAxios = async(url,func_type,func_set,message)=>{
+    let text = "Are you sure you want to Delete"
+
+    if(window.confirm(text)=== true){
+      func_set(true)
+      try {
+        const response = await func_type(url)
+        // console.log(response.data)
+        toast(message)
+      } catch (error) {
+        console.log(error)
+      }
+      func_set(false)
+    }
+  }
+  return DeleteAllAxios
+}

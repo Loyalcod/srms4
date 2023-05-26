@@ -1,20 +1,19 @@
-
 import CreateSubjectForm from "../../components/createSubjectForm/CreateSubjectForm"
 
-function CreateSubject() {
+function EditSubject() {
   return (
     <div className="create-class-flex">
 
         <div className="class-title">
-            <h3>Create Subject</h3>
+            <h3>Edit Subject</h3>
         </div>
 
         <div className="class-title color-class">
-            <CreateSubjectForm btnText={"Create Subject"}/>
+            <CreateSubjectForm btnText={"Update Subject"} />
         </div>
 
     </div>
   )
 }
 
-export default CreateSubject
+export default EditSubject

@@ -1,4 +1,5 @@
 import ClassTable from "../../components/classTable/ClassTable"
+import { ToastContainer } from "react-toastify"
 
 
 function ManageClass() {
@@ -6,6 +7,7 @@ function ManageClass() {
     <div className="create-class-flex">
 
         <div className="class-title">
+          <ToastContainer/>
             <h3>Manage Class</h3>
         </div>
 

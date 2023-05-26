@@ -3,7 +3,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import UseAxiosPrivate from "../hooks/UseAxiosPrivate";
-import { UseAxiosGetAll } from '../hooks/UseAxiosMethod';
+import { UseAxiosGetAll, UseAxiosDelete } from '../hooks/UseAxiosMethod';
 
 
 
@@ -38,6 +38,7 @@ function ClassTable() {
   const axiosApi = UseAxiosPrivate()
   const [del, setDel] = useState(false)
   const GetAxiosHook = UseAxiosGetAll()
+  const DelAxiosHook = UseAxiosDelete()
 
   useEffect(()=>{
     const controller = new AbortController()
@@ -63,17 +64,18 @@ function ClassTable() {
   },[del])
 
   const handleDelete = async(id)=>{
-    let text = "Are you sure you want to Delete"
-    if(window.confirm(text)=== true){
-      setDel(true)
-      try {
-        const response = await axiosApi.delete(`/classes/${id}`)
-        console.log(response.data)
-      } catch (error) {
-        console.log(error)
-      }
-      setDel(false)
-    }
+    DelAxiosHook(`/classes/${id}`,axiosApi.delete, setDel,"class deleted successfully")
+    // let text = "Are you sure you want to Delete"
+    // if(window.confirm(text)=== true){
+    //   setDel(true)
+    //   try {
+    //     const response = await axiosApi.delete(`/classes/${id}`)
+    //     console.log(response.data)
+    //   } catch (error) {
+    //     console.log(error)
+    //   }
+    //   setDel(false)
+    // }
   }
 
  

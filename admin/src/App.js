@@ -15,6 +15,7 @@ import ManageAddSubCombo from "./pages/ManageAddSubCombo/ManageAddSubCombo";
 import ManageResult from "./pages/ManageResult/ManageResult";
 import ManageStudent from "./pages/ManageStudent/ManageStudent";
 import ManageSubject from "./pages/ManageSubject/ManageSubject";
+import EditSubject from "./pages/editSubject/EditSubject";
 import { Routes, Route } from 'react-router-dom';
 import RequireAuth from "./components/requireAuth/RequireAuth";
 
@@ -42,6 +43,7 @@ function App() {
           {/* this is the editing pages */}
 
           <Route path="manage_class/:classId" element={<EditeClass/>}></Route>
+          <Route path="manage_Subject/:subjectId" element={<EditSubject/>}></Route>
       </Route>
       </Route>
       </Route>

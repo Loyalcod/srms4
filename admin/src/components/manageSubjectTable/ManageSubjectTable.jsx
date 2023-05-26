@@ -1,5 +1,6 @@
 import { DataGrid } from "@mui/x-data-grid";
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { Link } from "react-router-dom";
 
 function ManageSubjectTable() {
   const rows = [
@@ -26,10 +27,12 @@ function ManageSubjectTable() {
       field: "col4",
       headerName: "Action",
       width: 150,
-      renderCell: () => {
+      renderCell: (params) => {
         return (
           <>
+           <Link className="class_edit_text" to={`/admin/manage_Subject/${params.row.id}`}>
             <button className="class_edit_text" style={{cursor:"pointer"}}>Edit</button>
+            </Link>
             <HighlightOffIcon className="class__delete_icon" style={{cursor:"pointer"}} />
           </>
         );
