@@ -1,50 +1,109 @@
 import { DataGrid } from "@mui/x-data-grid";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { useEffect, useState } from "react";
+import { UseAxiosGetAll, UseAxiosDelete } from "../hooks/UseAxiosMethod";
+import UseAxiosPrivate from "../hooks/UseAxiosPrivate";
+import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
-function ManageResultForm() {
-  const rows = [
-    { id: 1, col1: "Marynn Isaac", col2: "Fourth Grade", col3: "Mathematics (MTH 112)", col4: "78", },
-    {
-      id: 2,
-      col1: "Chidera Chukwu",
-      col2: "First Grade",
-      col3: "Mathematics (MTH 112",
-      col4: "98",
-    },
-    {
-      id: 3,
-      col1: "Nnenne",
-      col2: "Third Grade",
-      col3: "English Language (GSS 112)",
-      col4: "88",
-    },
-  ];
-
+function ManageResultForm({ resultId }) {
   const columns = [
-    { field: "col1", headerName: "Student Name", width: 150 },
-    { field: "col2", headerName: "Class ", width: 150 },
-    { field: "col3", headerName: "Subject | Subject Code", width: 150 },
-    { field: "col4", headerName: "Mark", width: 150 },
     {
-      field: "col5",
-      headerName: "Action",
+      field: "fullname",
+      headerName: "Student Name",
       width: 150,
-      renderCell: () => {
+      renderCell: (params) => {
+        return <>{params?.row?.studentId?.fullname}</>;
+      },
+    },
+    {
+      field: "class",
+      headerName: "Class ",
+      width: 150,
+      renderCell: (params) => {
+        return <>{params?.row?.classId?.className}</>;
+      },
+    },
+    {
+      field: "subject",
+      headerName: "Subject | Subject Code",
+      width: 150,
+      renderCell: (params) => {
         return (
           <>
-            <button className="class_edit_text" style={{cursor: "pointer"}}>Edit</button>
-            <DeleteForeverIcon className="class__delete_icon" style={{cursor: "pointer"}} />
+            {params?.row?.subjectId?.subjectName} (
+            {params?.row?.subjectId?.subjectCode})
           </>
         );
       },
     },
-    
+    { field: "mark", headerName: "Mark", width: 150 },
+    {
+      field: "col5",
+      headerName: "Action",
+      width: 150,
+      renderCell: (params) => {
+        return (
+          <>
+            <Link
+              className="class_edit_text"
+              to={`/admin/manage_Result/${params.row._id}`}
+              style={{ cursor: "pointer" }}
+            >
+              <button className="class_edit_text">Edit</button>
+            </Link>
+            {/* /:resultId/:studentId/:subjectId' */}
+            <DeleteForeverIcon
+              onClick={() =>
+                handleDelete(
+                  params.row._id,
+                  params.row.studentId._id,
+                  params.row.subjectId._id
+                )
+              }
+              className="class__delete_icon"
+              style={{ cursor: "pointer" }}
+            />
+          </>
+        );
+      },
+    },
   ];
+
+  const getAxiosMethod = UseAxiosGetAll();
+  const secureApiAxios = UseAxiosPrivate();
+  const [Data, setData] = useState([]);
+  const deleteAxiosMethod = UseAxiosDelete()
+  const [del, setDel] = useState(false)
+
+  const handleDelete= async(resultId,studentId,subjectId)=>{
+    deleteAxiosMethod(`result/${resultId}/${studentId}/${subjectId}`,secureApiAxios.delete,setDel,"Result Deleted successfully")
+  }
+
+  useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+    getAxiosMethod(
+      "/result",
+      secureApiAxios.get,
+      controller,
+      isMounted,
+      setData
+    );
+    console.log(Data);
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
+  }, [del]);
+
   return (
     <div className="classTable">
+      <ToastContainer/>
       <div className="tableWrapper">
         <DataGrid
-          rows={rows}
+          rows={Data}
+          getRowId={(Data) => Data._id}
           columns={columns}
           disableRowSelectionOnClick
           checkboxSelection
@@ -53,7 +112,7 @@ function ManageResultForm() {
         />
       </div>
     </div>
-  )
+  );
 }
 
-export default ManageResultForm
+export default ManageResultForm;

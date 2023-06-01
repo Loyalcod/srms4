@@ -3,7 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import UseAxiosPrivate from "../hooks/UseAxiosPrivate";
 import { UseAxiosPostPatch, UseAxiosGetAll } from "../hooks/UseAxiosMethod";
 
-function CreateResultForm({ btnText }) {
+function CreateResultForm({ btnText, isActive, resultId }) {
   const secureApiAxios = UseAxiosPrivate();
   const postPatchAxios = UseAxiosPostPatch();
   const getAllAxios = UseAxiosGetAll();
@@ -11,6 +11,9 @@ function CreateResultForm({ btnText }) {
   const [studentId, setStudentId] = useState("")
   const [studentClassId, setStudentClassId] = useState("")
   const [studentSubject, setStudentSubject] = useState([])
+  const [subjectId, setSubjectId] = useState("")
+  const [mark, setMark] = useState("")
+  const [resultIdNum, setResultIdNum] = useState("")
 
   useEffect(() => {
     let isMounted = true;
@@ -37,9 +40,64 @@ function CreateResultForm({ btnText }) {
     setStudentSubject(subforAStudent?.subjectId)
   },[studentId])
 
+  useEffect(()=>{
+    let isMounted = true
+    const controller = new AbortController()
+    const getResultEdit = async()=>{
+      try {
+        const response = await secureApiAxios.get(`/result/${resultId}`,{
+          signal: controller.signal
+        })
+        setResultIdNum(response?.data?._id)
+        setStudentId(response?.data?.studentId?._id)
+        setStudentClassId(response?.data?.classId?._id)
+        setSubjectId(response?.data?.subjectId?._id)
+        setMark(response?.data?.mark)
+        console.log(response.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getResultEdit()
+    return()=>{
+      isMounted=false
+      controller.abort()
+    }
+  },[])
+
+
+
   const handleClick = (e) => {
     e.preventDefault();
+
+    if(studentId === "" || studentClassId === "" || subjectId === "" || mark === "") return toast ("fill in the Missing field/s*")
+    const reqstData = {
+      studentId,
+      subjectId,
+      classId:studentClassId,
+      mark
+    }
+
+    if(btnText === "Update Result"){
+      postPatchAxios(`/result/${resultId}`,secureApiAxios.patch,"Result Updated Successfully", reqstData)
+    }else{
+      postPatchAxios('/result',secureApiAxios.post,"Result Have Been Declared Successfully",reqstData)
+      setStudentId("")
+      setStudentClassId("")
+      setSubjectId("")
+      setMark("")
+    }    
   };
+
+  useEffect(()=>{
+    const newStudentId = studentId
+    const alltheStudent = [...allStudent]
+    const subforAStudent = alltheStudent.find(knowStd =>{
+        return knowStd._id === newStudentId
+    })
+    setMark("")
+  },[studentId])
+
   return (
     <>
       <div className="comboContainer">
@@ -47,9 +105,9 @@ function CreateResultForm({ btnText }) {
         <div className="comboholder">
           <form onSubmit={handleClick} className="addStdSubComboForm">
             <div className="formcontrol">
-              <label>Select Student:</label>
+              <label>{btnText === "Update Result" ? "Student" : "Select Student"}</label>
               <br />
-              <select value={studentId} onChange={(e)=>{
+              <select value={studentId} disabled={isActive} onChange={(e)=>{
                 setStudentId(e.target.value)
                 setStudentClassId(e.target.options[e.target.selectedIndex].dataset.classid)
                 }}>
@@ -66,17 +124,32 @@ function CreateResultForm({ btnText }) {
               </select>
             </div>
             <div className="formcontrol">
-              <label>Select Subject:</label>
+              <label>{btnText === "Update Result" ? "Subject" : "Select Subject"}</label>
               <br />
-              <select>
-                <option value="">Select Subject</option>
-                <option>English Language</option>
+              <select
+                value={subjectId}
+                disabled={isActive}
+                onChange={(e)=>setSubjectId(e.target.value)}
+              > <option >Select Subject</option>              
+                {studentSubject === undefined ?
+                <option>Select the Student Field</option> 
+                : studentSubject.length === 0 ?
+                <option>No subject have been assigned to this student yet</option>
+                : studentSubject.map((subjects)=>(                  
+                  <option key={subjects._id} value={subjects._id}>{subjects.subjectName} ({subjects.subjectCode})</option>
+                ))
+              }
+               
               </select>
             </div>
             <div className="formcontrol">
-              <label>Select Subject:</label>
+              <label>Input Mark</label>
               <br />
-              <input type="number" />
+              <input min={0} max={100} placeholder="input Subject Mark" type="number"
+              value={mark}
+              onChange={(e)=>setMark(e.target.value)}
+              disabled={studentSubject === undefined || studentSubject.length === 0 || subjectId === "" ? true : false}
+              />
             </div>
 
             <button>{btnText}</button>

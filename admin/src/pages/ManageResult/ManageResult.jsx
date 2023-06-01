@@ -10,7 +10,7 @@ function ManageResult() {
         </div>
 
         <div className="class-title color-class">
-            <ManageResultForm />
+            <ManageResultForm btnText="Declare Result"/>
         </div>
 
     </div>

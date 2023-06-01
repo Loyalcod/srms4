@@ -10,7 +10,7 @@ function CreateResult() {
         </div>
 
         <div className="class-title color-class">
-            <CreateResultForm btnText = "Create Result" />
+            <CreateResultForm btnText = "Declare Result" />
         </div>
 
     </div>

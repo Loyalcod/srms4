@@ -1,4 +1,5 @@
 import DeloginPage from "./pages/deLoginPage/DeloginPage";
+import EditResult from "./pages/EditResult/EditResult";
 import EditStudent from "./pages/EditStudent/EditStudent"
 import EditeClass from "./pages/editeClassPage/EditeClass";
 import PersistenLogin from "./components/persistLogin/PersistantLogin";
@@ -46,6 +47,7 @@ function App() {
           <Route path="manage_class/:classId" element={<EditeClass/>}></Route>
           <Route path="manage_Subject/:subjectId" element={<EditSubject/>}></Route>
           <Route path="manage_Student/:studentId" element={<EditStudent/>}></Route>
+          <Route path="manage_Result/:resultId" element={<EditResult/>}></Route>
       </Route>
       </Route>
       </Route>
