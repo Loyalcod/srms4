@@ -1,20 +1,21 @@
 import CreateStudentForm from "../../components/createStudentForm/CreateStudentForm"
+import { useParams } from "react-router-dom"
 
-
-function CreateStudent() {
+function EditStudent() {
+  const {studentId} = useParams()
   return (
     <div className="create-class-flex">
 
         <div className="class-title">
-            <h3>Create Student</h3>
+            <h3>Update Student</h3>
         </div>
 
         <div className="class-title color-class">
-           <CreateStudentForm btnText="Create Student"/>
+           <CreateStudentForm btnText="Update Student" studentId = {studentId}/>
         </div>
 
     </div>
   )
 }
 
-export default CreateStudent
+export default EditStudent

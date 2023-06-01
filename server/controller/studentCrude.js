@@ -34,6 +34,7 @@ exports.registerStudent = async(req,res)=>{
 exports.getAllstudent = async(req,res)=>{
     try {
         const allstudent = await Student.find().populate('studentClassId')
+        .populate("subjectId")
         res.json(allstudent)
 
     } catch (error) {

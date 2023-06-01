@@ -8,8 +8,7 @@ export const UseAxiosPostPatch = ()=>{
             console.log(response)
             if(response.status === 200){
               toast(message)
-            }
-            
+            }            
             
           } catch (error) {
             if(!error.response){
@@ -28,7 +27,7 @@ export const UseAxiosGetAll = ()=>{
     const getAllAxios = async(url, func_type, cntrl,isMnted, func_set)=>{
         try {
             const response = await func_type(url,{ signal: cntrl.signal })
-            // console.log(response.data)
+            console.log(response.data)
             if(isMnted) return func_set(response.data)
           } catch (error) {
             if(error.name === 'AbortError') {

@@ -28,7 +28,7 @@ function MangStdSubComboTable() {
       headerName: "Student Name",
       width: 150,
       renderCell: (params) => {
-        return <div>{params?.row?.studentId.fullname}</div>;
+        return <div>{params?.row?.studentId?.fullname}</div>;
       },
     },
     {
